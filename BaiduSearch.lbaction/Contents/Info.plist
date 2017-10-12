@@ -18,13 +18,19 @@
 		<string>Sihan</string>
 		<key>LBEmail</key>
 		<string>wolf.mb@gmail.com</string>
+		<key>LBRequirements</key>
+		<string>python</string>
+		<key>LBSummary</key>
+		<string>百度搜索建议</string>
 		<key>LBTwitter</key>
 		<string>@Sihan007</string>
 		<key>LBWebsiteURL</key>
-		<string></string>
+		<string>https://github.com/Sihan001/lbActions</string>
 	</dict>
 	<key>LBMinimumLaunchBarVersion</key>
-	<integer>7</integer>
+	<integer>6</integer>
+	<key>LBRequirements</key>
+	<string>python</string>
 	<key>LBScripts</key>
 	<dict>
 		<key>LBDefaultScript</key>
