@@ -30,5 +30,9 @@ sugList = json.loads(html)
 for l in sugList['s']:
     item = {}
     item['title'] = l
+    item['subtitle'] = u"搜索:%s" % l
+    url = u"http://www.baidu.com/s?"
+    item['url'] = url
+    item['quickLookURL'] = url
     items.append(item)
 print json.dumps(items)

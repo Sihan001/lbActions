@@ -3,25 +3,19 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleIconFile</key>
-	<string>2fdda3cc7cd98d1050671cda253fb80e7aec90ad.jpg.png</string>
+	<string>icon.png</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.sihan.LaunchBar.action.BaiduSearch</string>
+	<string>com.feliek.LaunchBar.action.ShowDesktop</string>
 	<key>CFBundleName</key>
-	<string>百度搜索</string>
-	<key>CFBundleVersion</key>
-	<string>1.0</string>
+	<string>显示桌面</string>
 	<key>LBAbbreviation</key>
-	<string>bd</string>
+	<string>showdesktop</string>
 	<key>LBDescription</key>
 	<dict>
 		<key>LBAuthor</key>
-		<string>Sihan</string>
+		<string>Sihan Chan</string>
 		<key>LBEmail</key>
 		<string>wolf.mb@gmail.com</string>
-		<key>LBRequirements</key>
-		<string>python</string>
-		<key>LBSummary</key>
-		<string>百度搜索建议</string>
 		<key>LBTwitter</key>
 		<string>@Sihan007</string>
 		<key>LBWebsiteURL</key>
@@ -29,32 +23,18 @@
 	</dict>
 	<key>LBMinimumLaunchBarVersion</key>
 	<integer>6</integer>
-	<key>LBRequirements</key>
-	<string>python</string>
 	<key>LBScripts</key>
 	<dict>
 		<key>LBDefaultScript</key>
 		<dict>
-			<key>LBAcceptedArgumentTypes</key>
-			<array>
-				<string>string</string>
-			</array>
-			<key>LBKeepWindowActive</key>
-			<true/>
-			<key>LBLiveFeedbackEnabled</key>
-			<true/>
-			<key>LBRequiresArgument</key>
-			<true/>
 			<key>LBResultType</key>
 			<string>unknown</string>
-			<key>LBReturnsResult</key>
-			<true/>
 			<key>LBScriptName</key>
-			<string>default.py</string>
+			<string>default.scpt</string>
 		</dict>
 	</dict>
 	<key>LBTextInputTitle</key>
-	<string>百度搜索</string>
+	<string>显示桌面</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>10.9</string>
 </dict>
