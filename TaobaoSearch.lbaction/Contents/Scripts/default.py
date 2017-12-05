@@ -8,30 +8,30 @@ import json
 import urllib2
 import urllib
 
+SUGURL = 'http://suggest.taobao.com/sug?code=utf-8&'
+TAOBAOSEARCH = 'http://s.taobao.com/search?q='
+
 item = {}
 items = []
+
 keyword = sys.argv[1:]
 keyword = "".join(keyword)
 if not keyword:
 	sys.exit()
 
-query = urllib.urlencode({'wd': keyword})
-search_url = 'http://suggestion.baidu.com/su?&zxmode=1&json=1&p=3&sid=&' + query
+query = urllib.urlencode({'q': keyword})
+search_url = SUGURL + query
 res = urllib2.Request(search_url)
 response = urllib2.urlopen(res)
 html = response.read()
 response.close()
 if not html:
     sys.exit()
-html = unicode(html, "gb2312").encode("utf8")
-prefix = len("window.baidu.sug(")
-# html = html[prefix:]
-html = html[prefix:-2]
 sugList = json.loads(html)
 
 item['title'] = keyword
-url = "http://www.baidu.com/s?wd=%s" % keyword
-item['subtitle'] = url
+url = TAOBAOSEARCH + keyword
+item['subtitle'] = u'淘宝搜索:' + keyword.decode("utf8")
 item['url'] = url
 item['quickLookURL'] = url
 #item['action'] = 't.py'
@@ -39,11 +39,11 @@ item['quickLookURL'] = url
 #item['actionReturnsItems'] = True
 items.append(item)
 
-for l in sugList['s']:
+for l in sugList['result']:
     item = {}
-    item['title'] = l
-    url = "http://www.baidu.com/s?wd=%s" % l
-    item['subtitle'] = url
+    item['title'] = l[0]
+    url = TAOBAOSEARCH + l[0]
+    item['subtitle'] = u'相关商品数量:' + str(l[1])
     item['url'] = url
     item['quickLookURL'] = url
     items.append(item)

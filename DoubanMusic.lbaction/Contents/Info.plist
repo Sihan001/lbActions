@@ -3,41 +3,45 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleIconFile</key>
-	<string>icon.png</string>
+	<string>67BE2A80-D1E6-4A47-B82A-E140CBA759A0.png</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.feliek.LaunchBar.action.ShowDesktop</string>
+	<string>com.sihan.LaunchBar.action.DoubanMusic</string>
 	<key>CFBundleName</key>
-	<string>显示桌面</string>
+	<string>Douban Music</string>
 	<key>LBAbbreviation</key>
-	<string>showdesktop</string>
+	<string>music</string>
 	<key>LBDescription</key>
 	<dict>
 		<key>LBAuthor</key>
 		<string>Sihan</string>
 		<key>LBEmail</key>
 		<string>wolf.mb@gmail.com</string>
-		<key>LBSummary</key>
-		<string>Hide all application and show desktop</string>
 		<key>LBTwitter</key>
 		<string>@Sihan007</string>
 		<key>LBWebsiteURL</key>
 		<string>https://github.com/Sihan001/lbActions</string>
 	</dict>
-	<key>LBMinimumLaunchBarVersion</key>
-	<integer>6</integer>
 	<key>LBScripts</key>
 	<dict>
 		<key>LBDefaultScript</key>
 		<dict>
+			<key>LBAcceptedArgumentTypes</key>
+			<array>
+				<string>string</string>
+			</array>
+			<key>LBKeepWindowActive</key>
+			<true/>
+			<key>LBLiveFeedbackEnabled</key>
+			<true/>
+			<key>LBRequiresArgument</key>
+			<true/>
 			<key>LBResultType</key>
 			<string>unknown</string>
+			<key>LBReturnsResult</key>
+			<true/>
 			<key>LBScriptName</key>
-			<string>default.scpt</string>
+			<string>default.py</string>
 		</dict>
 	</dict>
-	<key>LBTextInputTitle</key>
-	<string>显示桌面</string>
-	<key>LSMinimumSystemVersion</key>
-	<string>10.9</string>
 </dict>
 </plist>

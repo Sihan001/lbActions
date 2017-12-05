@@ -3,34 +3,28 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleIconFile</key>
-	<string>icon.png</string>
+	<string>901-140923102G70-L.png</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.feliek.LaunchBar.action.NewAction</string>
+	<string>com.watsy0007.youdaotrans</string>
 	<key>CFBundleName</key>
-	<string>百度天气</string>
+	<string>有道翻译</string>
 	<key>CFBundleVersion</key>
-	<string>1.0</string>
+	<string>0.0.1</string>
 	<key>LBAbbreviation</key>
-	<string>tq</string>
+	<string>yd</string>
 	<key>LBDescription</key>
 	<dict>
 		<key>LBAuthor</key>
-		<string>Sihan</string>
+		<string>Youdao Translation</string>
 		<key>LBEmail</key>
-		<string>wolf.mb@gmail.com</string>
-		<key>LBRequirements</key>
-		<string>python</string>
+		<string>watsy0007@gmail.com</string>
 		<key>LBSummary</key>
-		<string> 百度天气</string>
+		<string>在线版有道翻译插件</string>
 		<key>LBTwitter</key>
-		<string>@Sihan007</string>
+		<string>watsy0007</string>
 		<key>LBWebsiteURL</key>
-		<string>https://github.com/Sihan001/lbActions</string>
+		<string>https://github.com/watsy0007/launchbar-actions</string>
 	</dict>
-	<key>LBMinimumLaunchBarVersion</key>
-	<integer>6</integer>
-	<key>LBRequirements</key>
-	<string>python</string>
 	<key>LBScripts</key>
 	<dict>
 		<key>LBDefaultScript</key>
@@ -41,19 +35,34 @@
 			</array>
 			<key>LBKeepWindowActive</key>
 			<true/>
+			<key>LBRequiresArgument</key>
+			<true/>
+			<key>LBResultType</key>
+			<string>string</string>
+			<key>LBReturnsResult</key>
+			<true/>
+			<key>LBScriptName</key>
+			<string>default.py</string>
+		</dict>
+		<key>LBSuggestionsScript</key>
+		<dict>
+			<key>LBAcceptedArgumentTypes</key>
+			<array>
+				<string>string</string>
+			</array>
+			<key>LBKeepWindowActive</key>
+			<true/>
 			<key>LBLiveFeedbackEnabled</key>
+			<true/>
+			<key>LBRequiresArgument</key>
 			<true/>
 			<key>LBResultType</key>
 			<string>unknown</string>
 			<key>LBReturnsResult</key>
 			<true/>
 			<key>LBScriptName</key>
-			<string>weather.py</string>
+			<string>suggestions.rb</string>
 		</dict>
 	</dict>
-	<key>LBTextInputTitle</key>
-	<string>百度天气</string>
-	<key>LSMinimumSystemVersion</key>
-	<string>10.9</string>
 </dict>
 </plist>

@@ -5,19 +5,17 @@
 	<key>CFBundleIconFile</key>
 	<string>icon.png</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.feliek.LaunchBar.action.ShowDesktop</string>
+	<string>com.feliek.LaunchBar.action.RMBConvert</string>
 	<key>CFBundleName</key>
-	<string>显示桌面</string>
+	<string>人民币大写转换</string>
 	<key>LBAbbreviation</key>
-	<string>showdesktop</string>
+	<string>cny</string>
 	<key>LBDescription</key>
 	<dict>
 		<key>LBAuthor</key>
 		<string>Sihan</string>
 		<key>LBEmail</key>
 		<string>wolf.mb@gmail.com</string>
-		<key>LBSummary</key>
-		<string>Hide all application and show desktop</string>
 		<key>LBTwitter</key>
 		<string>@Sihan007</string>
 		<key>LBWebsiteURL</key>
@@ -29,15 +27,27 @@
 	<dict>
 		<key>LBDefaultScript</key>
 		<dict>
+			<key>LBAcceptedArgumentTypes</key>
+			<array>
+				<string>string</string>
+			</array>
+			<key>LBKeepWindowActive</key>
+			<true/>
+			<key>LBLiveFeedbackEnabled</key>
+			<true/>
+			<key>LBRequiresArgument</key>
+			<true/>
 			<key>LBResultType</key>
 			<string>unknown</string>
+			<key>LBReturnsResult</key>
+			<true/>
 			<key>LBScriptName</key>
-			<string>default.scpt</string>
+			<string>default.py</string>
 		</dict>
 	</dict>
 	<key>LBTextInputTitle</key>
-	<string>显示桌面</string>
+	<string>人民币大写转换</string>
 	<key>LSMinimumSystemVersion</key>
-	<string>10.9</string>
+	<string>10.9+</string>
 </dict>
 </plist>

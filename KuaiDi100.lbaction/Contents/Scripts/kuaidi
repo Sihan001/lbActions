@@ -1,0 +1,115 @@
+#!/usr/bin/env ruby
+# coding: utf-8
+#Author: Roy L Zuo (roylzuo at gmail dot com)
+#Description:
+
+require 'open-uri'
+require 'json'
+
+COMPANY_FILE = 'company.json'
+SAVE_FILE = 'query.json'
+
+$company_list = []
+if File.file? COMPANY_FILE
+  $company_list = JSON.parse( open(COMPANY_FILE).read.force_encoding('UTF-8'), :symbolize_names => true )
+end
+
+def record_query(save_file, package, detail)
+  begin
+    saves = JSON.parse(open(save_file).read.force_encoding('UTF-8'), :symbolize_names => true)
+  rescue
+    saves = {}
+  end
+  saves[package] = {
+    :company => decode_company(detail[:com]),
+    :code => detail[:com],
+    :last_query => Time.now.to_s,
+    :status  => detail[:data] ? detail[:data][0] : nil
+  }
+  # delete older then 30 day records
+  day = 24*3600
+  saves = saves.delete_if {|_,v|
+    query_time_delta = Time.now - Time.parse(v[:last_query])
+    query_time_delta > 30*day or ( query_time_delta > 3*day and not v[:status] )
+  }
+  # delete partial tracking numbers
+  numbers = saves.keys
+  partial_keys = numbers.select{|k| numbers.any?{|i| i.to_s != k.to_s and i.to_s.include? k.to_s } }
+  partial_keys.each{|k| saves.delete(k) }
+
+  open(save_file, 'w') {|f| f.puts saves.to_json}
+end
+
+def company_code(package_no)
+  url = 'http://www.kuaidi100.com/autonumber/auto?num=' + package_no
+  res = JSON.parse open(url).read
+  res = res.sort_by{|i| i['noCount'] }
+  res.empty? ? nil : res.last['comCode']
+end
+
+def kuaidi_status(package_no, com_code = nil)
+  company_code ||= company_code(package_no)
+  return  nil   unless company_code
+  detail_url     = "http://www.kuaidi100.com/query?type=#{company_code}&postid=#{package_no}&id=1&valicode=&temp=0.08001715072286408"
+  JSON.parse( open(detail_url).read, :symbolize_names => true )
+end
+
+def format_status_record(record, color = "\e[37m")
+  time = record[:time]
+  context = record[:context].gsub(/\s+/, ' ')
+  rec = time + '   ' + context
+  color.to_s.empty? ? rec : color + rec + "\e[m"
+end
+
+def format_screen_detail(detail)
+  p detail if $DEBUG
+  if detail[:message] != 'ok'
+    puts detail[:message]
+    return
+  end
+  puts "\e[32;1m" + detail[:com] + "\t\e[31;1m" + ARGV.first + "\e[m\n"
+  data = detail[:data].reverse
+  data[0..-2].each {|i| puts format_status_record(i) }
+  format_status_record(data.last, "\e[33;1m")
+end
+
+def format_detail(detail, output)
+  send("format_#{output}_detail", detail)
+end
+
+def decode_company(code)
+  if com = $company_list.find{|i| i[:code] == code }
+    return com[:companyname]
+  end
+  code
+end
+
+def saved_pacakge_detail(package, attr)
+  $saves ||= File.file?(SAVE_FILE) ? JSON.parse(open(SAVE_FILE).read.force_encoding('utf-8')) : {}
+  $saves[package] ? $saves[package][attr.to_s] : nil
+end
+
+if __FILE__==$0
+  require 'optparse'
+
+  options = {}
+  OptionParser.new do |opts|
+    opts.banner = "用法: #{$0} [options] <STRING>"
+    opts.on('-s','--short','只显示最后结果') { options[:short] = true }
+    options[:output] = :screen
+  end.parse!
+
+  abort "请输入快递号： #{$0} <快递单号>"  if  ARGV.empty?
+
+  package = ARGV.first
+
+  detail = kuaidi_status(package, saved_pacakge_detail(package, :code))
+
+  detail ||= {:status => 'error', :message => "没找到有关快递单 #{package} 的信息"}
+
+  if options[:short]
+    detail[:data] = detail[:data][0..0]
+  end
+
+  puts format_detail(detail, options[:output])
+end
